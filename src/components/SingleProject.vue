@@ -3,7 +3,7 @@
         <div class="actions">
             <h3 @click="showDetails = !showDetails">{{ project.title }}</h3>
             <div class="icons">
-                <span class="material-icons">edit</span>
+                <router-link :to="{ name: 'EditProject', params: {id: project.id} }"><span class="material-icons">edit</span></router-link>
                 <span @click="deleteProject" class="material-icons">delete</span>
                 <span @click="toggleComplete" class="material-icons tick">done</span>
             </div>
@@ -38,6 +38,7 @@ export default {
                 .then(() => this.$emit('complete', this.project.id)).catch(err => console.log(err))
         }
     }
+    
 }
 </script>
 
@@ -72,11 +73,11 @@ h3 {
     color: #777;
 }
 
-.project.complete{
+.project.complete {
     border-left: 4px solid #00ce89;
 }
 
-.project.complete .tick{
+.project.complete .tick {
     color: #00ce89;
 }
 </style>
